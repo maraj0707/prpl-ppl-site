@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <title>PRPL PPL</title>
+  <meta name="description" content="PRPL PPL: follow the Signal.">
+  <link rel="preload" href="assets/fonts/michroma.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="base.css"><link rel="stylesheet" href="site.css">
+</head>
+<body class="is-loading"><nav class="nav" aria-label="Main"><a class="logo" href="index.html">✦ PRPL PPL</a><div class="links"><a href="codex.html">Codex</a><a href="elsewhere.html">Elsewhere</a><a href="observatory.html">Observatory</a><a href="archive.html">Archive</a><a href="oracle.html">Oracle</a><a href="portal.html">Portal</a></div></nav>
+
+  <!-- Loading screen: stays up until the whole video is in memory, so scrolling never stutters. -->
+  <div class="loader" id="loader" role="status" aria-live="polite">
+    <div class="loader__mark" aria-hidden="true">PRPL PPL</div>
+    <div class="loader__bar" aria-hidden="true"><span id="loader-bar"></span></div>
+    <p class="loader__status" id="loader-status">Loading 0%</p>
+  </div>
+
+  <!-- Scroll-controlled video: scrolling moves the film forward and back. It never plays by itself. -->
+  <section class="scroll-video" id="scroll-video" aria-label="PRPL PPL cinematic walk-through">
+    <div class="scroll-video__stage">
+      <video
+        class="scroll-video__media"
+        data-src="./assets/video/scene.mp4"
+        data-mobile-src="./assets/video/scene-mobile.mp4"
+        muted
+        playsinline
+        webkit-playsinline
+        preload="metadata"
+        disablepictureinpicture
+        disableremoteplayback
+        aria-hidden="true"
+        tabindex="-1"></video>
+      <div class="home-t"><p class="k">THE SIGNAL</p><h1>PRPL PPL</h1></div><div class="scroll-hint" id="scroll-hint">Scroll to enter</div><div class="home-cta" id="home-cta"><p class="sm">FOLLOW THE SIGNAL</p><a class="btn" href="codex.html">ENTER CODEX: 000 →</a></div>
+    </div>
+  </section>
+
+  <script>
+    // Pick the phone or desktop file before the script starts (phones get a centre-cropped, smaller copy).
+    (function () {
+      var v = document.querySelector('#scroll-video video');
+      var src = v.getAttribute('data-src');
+      if (window.matchMedia('(max-aspect-ratio: 2/3)').matches) src = v.getAttribute('data-mobile-src') || src;
+      window.RVR_SRC = src; // script.js loads it (with a progress bar)
+    })();
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
